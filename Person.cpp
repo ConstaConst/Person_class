@@ -9,7 +9,7 @@ Person::Person(char* last_name, char* first_name, char* patronymic, char* addres
                const bool sex, const unsigned int education, const int year) :
 last_name(nullptr),
 first_name(nullptr),
-partronymic(nullptr),
+patronymic(nullptr),
 address(nullptr),
 sex(sex),
 education(education),
@@ -20,7 +20,7 @@ year_of_birth(year)
     if (first_name)
         change_str(&this->first_name, first_name);
     if (patronymic)
-       if (!change_str(&this->partronymic, patronymic))
+       if (!change_str(&this->patronymic, patronymic))
            cout << "ERROR! No memory for name or part of name." << endl;
 
     if (address) {
@@ -35,7 +35,7 @@ year_of_birth(rhs.year_of_birth)
 {
     change_str(&last_name, rhs.last_name);
     change_str(&first_name, rhs.first_name);
-    if(!change_str(&partronymic, rhs.partronymic))
+    if(!change_str(&patronymic, rhs.patronymic))
         cout << "ERROR! No memory for name or part of name." << endl;
 
     if(!change_str(&address, rhs.address))
@@ -46,8 +46,8 @@ Person::~Person() {
     last_name = nullptr;
     delete[] first_name;
     first_name = nullptr;
-    delete[] partronymic;
-    partronymic = nullptr;
+    delete[] patronymic;
+    patronymic = nullptr;
     delete[] address;
     address = nullptr;
 }
@@ -62,7 +62,7 @@ const bool Person::set_name(char* last, char* first, char* patronymic) {
             return false;
 
     if (patronymic)
-        if(!change_str(&this->partronymic, patronymic))
+        if(!change_str(&this->patronymic, patronymic))
             return false;
 
     return true;
@@ -86,7 +86,7 @@ void Person::set_year_of_birth(int year) {
 const char* const Person::get_last_name() const {
     if (last_name)
         return last_name;
-    return "\0";
+    return "";
 }
 const char* const Person::get_first_name() const {
     if (first_name)
@@ -94,8 +94,8 @@ const char* const Person::get_first_name() const {
     return "\0";
 }
 const char* const Person::get_patronymic() const {
-    if (partronymic)
-        return partronymic;
+    if (patronymic)
+        return patronymic;
     return "\0";
 }
 const char* const Person::get_address() const {
@@ -121,9 +121,9 @@ void Person::show_first_name() const {
     if(first_name)
         cout << first_name;
 }
-void Person::show_partronymic() const {
-    if(partronymic)
-        cout << partronymic;
+void Person::show_patronymic() const {
+    if(patronymic)
+        cout << patronymic;
 }
 void Person::show_address() const {
     if(address)
@@ -136,6 +136,7 @@ void Person::show_sex() const {
         cout << "female";
 }
 void Person::show_education() const {
+    //why default case is needed
     switch (education) {
         case school: {
             cout << "school";
@@ -153,6 +154,23 @@ void Person::show_education() const {
 }
 void Person::show_year_of_birth() const {
     cout << year_of_birth;
+}
+
+void Person::show_all() const {
+    show_last_name();
+    cout << " ";
+    show_first_name();
+    cout << " ";
+    show_patronymic();
+    cout << endl;
+    show_address();
+    cout << endl;
+    show_sex();
+    cout << endl;
+    show_education();
+    cout << endl;
+    show_year_of_birth();
+    cout << endl << endl;
 }
 
 const bool Person::change_str (char** pre_str, char* new_str) {

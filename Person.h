@@ -1,16 +1,3 @@
-//
-// Created by konstantin-ub on 18.03.17.
-//
-/*
- * Разработать классы для описанных ниже объектов. Включить в класс
-конструкторы, конструктор копирования, деструктор, методы set(…),
-get(…), show(…). Память под строковые поля необходимо выделять
-динамически. Определить другие необходимые методы.
-    13. Person: Фамилия, Имя, Отчество, Адрес, Пол, Образование,
-            Год рождения. Создать массив объектов. Вывести:
-        а) список граждан, возраст которых превышает заданный;
-б) список граждан с высшим образованием;
-в) список граждан мужского пола.*/
 
 #ifndef HW_4_PERSON_H
 #define HW_4_PERSON_H
@@ -26,7 +13,7 @@ public:
     Person(const Person& rhs);
     ~Person();
 
-    const bool set_name(char* last = nullptr, char* first = nullptr, char* = nullptr);
+    const bool set_name(char* last = nullptr, char* first = nullptr, char* patronymic= nullptr);
     const bool set_address(char* address = nullptr);
     void set_sex(bool sex = male);
     void set_education(unsigned int education = school);
@@ -42,17 +29,18 @@ public:
 
     void show_last_name() const;
     void show_first_name() const;
-    void show_partronymic() const;
+    void show_patronymic() const;
 
     void show_address() const;
     void show_sex() const;
     void show_education() const;
     void show_year_of_birth() const;
+    void show_all() const;
 
 private:
     char* last_name;
     char* first_name;
-    char* partronymic;
+    char* patronymic;
     char* address;
     bool sex;
     unsigned int education;
